@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ahmed Khaled - Physical Therapist & Clinical Nutritionist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* :root {
+            --primary: #0f172a;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --bg: #030712;
+            --card: rgba(15, 23, 42, 0.6);
+            --card-border: rgba(99, 102, 241, 0.2);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        } */
+
+
+        :root {
+            /* --- Base Tones (Deep Green) --- */
+            --bg: #050f09;
+            --primary: #0a1a12;
+            /* Used for main surfaces, slightly lighter than bg */
+
+            /* --- Accent Tones (Vibrant Green) --- */
+            --accent: #22c55e;
+            /* A vibrant, modern green */
+            --accent-light: #4ade80;
+            /* A lighter shade for hover/active */
+            --accent-glow: rgba(34, 197, 94, 0.4);
+
+            /* --- UI & Text --- */
+            --card: rgba(10, 26, 18, 0.7);
+            /* Translucent surface color */
+            --card-border: rgba(34, 197, 94, 0.2);
+            /* Subtle green border */
+            --text: #f0fdf4;
+            /* A very light, slightly green-tinted white */
+            --text-muted: #a3b8a8;
+            /* A desaturated, muted green-gray */
+
+            /* --- Gradient --- */
+            --gradient: linear-gradient(135deg, #22c55e 0%, #3b82f6 100%);
+            /* Modern Green -> Blue */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Animated Background */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bg-glow-1 {
+            top: -200px;
+            left: -200px;
+            background: #6366f1;
+        }
+
+        .bg-glow-2 {
+            bottom: -200px;
+            right: -200px;
+            background: #a855f7;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(3, 7, 18, 0.8);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-text h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 8px 32px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: var(--gradient);
+            padding: 6px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero-image-inner span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px 24px;
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        .floating-card-1 {
+            top: 20%;
+            left: -60px;
+            animation-delay: 0s;
+        }
+
+        .floating-card-2 {
+            bottom: 20%;
+            right: -60px;
+            animation-delay: 1s;
+        }
+
+        .floating-card-3 {
+            top: 60%;
+            left: -40px;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating-card .num {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+
+        .floating-card .label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 80px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .stat-num {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: transparent;
+        }
+
+        .skill-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .skill-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+
+        .skill-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 48px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .service-card h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .service-card>p {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 12px 0;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .service-features li:last-child {
+            border: none;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #22c55e;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+
+        /* Transformations */
+        .transform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 32px;
+        }
+
+        .transform-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s;
+        }
+
+        .transform-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .transform-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+        }
+
+        .transform-img {
+            height: 200px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .transform-img span {
+            font-size: 48px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+
+        .transform-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        .transform-content {
+            padding: 32px;
+        }
+
+        .transform-content h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .transform-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .transform-img {
+                height: 220px;
+            }
+
+            .transform-arrow {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 48px;
+            position: relative;
+            display: flex;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+
+        .timeline-content {
+            width: calc(50% - 48px);
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 32px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
+            box-shadow: 0 0 0 6px var(--bg), 0 0 20px var(--accent-glow);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 50px;
+            font-size: 13px;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .timeline-content h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            transform: translateX(8px);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .contact-item span {
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .contact-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 48px;
+            backdrop-filter: blur(20px);
+        }
+
+        .contact-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+        }
+
+        /* Links inside contact section */
+        .contact-section a {
+            color: var(--text);
+            /* يخلي لون الرابط زي النص */
+            text-decoration: none;
+            /* يشيل الخط تحت الرابط */
+            transition: color 0.3s;
+        }
+
+        .contact-section a:hover {
+            color: var(--accent);
+            /* لون الرابط عند المرور عليه */
+        }
+
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 48px;
+            }
+
+            .hero-desc {
+                margin: 0 auto 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-image {
+                width: 280px;
+                height: 280px;
+            }
+
+            .hero-image-inner {
+                font-size: 72px;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat-num {
+                font-size: 36px;
+            }
+
+            .services-grid,
+            .transform-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                justify-content: flex-end !important;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Dr. Ahmed Khalid</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#services">Services</a>
+                <a href="#results">Results</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Transform Your <span>Health</span> & <span>Life</span></h1>
+                    <p class="hero-subtitle">Physical Therapist & Clinical Nutrition Specialist</p>
+                    <p class="hero-desc">Evidence-based rehabilitation and personalized nutrition and exercise programs
+                        designed to
+                        help you achieve optimal health and perfect body shape.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Book Consultation</a>
+                        <a href="#services" class="btn btn-secondary">Explore Services</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image">
+                        <div class="hero-image-inner"><span>AK</span></div>
+                    </div>
+                    <div class="floating-card floating-card-1">
+                        <div class="num">8+</div>
+                        <div class="label">Years Experience</div>
+                    </div>
+                    <div class="floating-card floating-card-2">
+                        <div class="num">200+</div>
+                        <div class="label">Happy Clients</div>
+                    </div>
+                    <div class="floating-card floating-card-3">
+                        <div class="num">5+</div>
+                        <div class="label">Certifications</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-num">8+</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">200+</div>
+                    <div class="stat-label">Patients Treated</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">5+</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">98%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2>Passionate About Your Wellness</h2>
+                <p>A decade of transforming lives through integrated healthcare approaches combining rehabilitation and
+                    nutrition.</p>
+            </div>
+            <div class="service-card" style="max-width: 900px; margin: 0 auto;">
+                <p style="font-size: 18px; line-height: 2; color: var(--text-muted);">
+                    Welcome! I'm <strong style="color: var(--text);">Dr. Ahmed Khaled</strong>, a dedicated Physical
+                    Therapist and Clinical Nutrition Specialist. I combine medical knowledge with real-life coaching to
+                    help you reach your goals safely, effectively, and sustainably so science is turned into results.
+                    <br><br>
+                    I believe in treating the whole person, not just symptoms. Through evidence-based practices,
+                    advanced therapeutic modalities, and tailored nutrition programs, I help my clients achieve
+                    sustainable health transformations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2>Skills & Specializations</h2>
+                <p>Comprehensive expertise across multiple wellness disciplines.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🦴</div>
+                    <h3>Physiotherapy</h3>
+                    <p>Advanced manual therapy, therapeutic exercises, and pain management techniques for optimal
+                        recovery.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💪</div>
+                    <h3>Rehabilitation</h3>
+                    <p>Post-surgery recovery, sports injury rehab, and mobility restoration programs.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🥗</div>
+                    <h3>Clinical Nutrition</h3>
+                    <p>Evidence-based dietary interventions and metabolic health optimization.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚖️</div>
+                    <h3>Weight Management</h3>
+                    <p>Sustainable weight loss, body recomposition, and lifestyle coaching.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🏋️</div>
+                    <h3>Functional Training</h3>
+                    <p>Movement optimization, strength development, and performance enhancement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What I Offer</span>
+                <h2>Premium Services</h2>
+                <p>Tailored solutions for your health and wellness journey.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Comprehensive Physiotherapy</h3>
+                    <p>Advanced treatment protocols combining manual therapy, therapeutic modalities, and exercise
+                        prescription.</p>
+                    <ul class="service-features">
+                        <li><span class="check-icon">✓</span> Manual Therapy & Joint Mobilization</li>
+                        <li><span class="check-icon">✓</span> Sports Injury Rehabilitation</li>
+                        <li><span class="check-icon">✓</span> Chronic Pain Management</li>
+                        <li><span class="check-icon">✓</span> Postural Correction Programs</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Clinical Nutrition Programs</h3>
+                    <p>Personalized nutrition plans based on metabolic assessment and body composition analysis.</p>
+                    <ul class="service-features">
+                        <li><span class="check-icon">✓</span> Metabolic Health Assessment</li>
+                        <li><span class="check-icon">✓</span> Customized diet Plans</li>
+                        <li><span class="check-icon">✓</span> Nutritional Counseling</li>
+                        <li><span class="check-icon">✓</span> Supplement Optimization</li>
+                        <li><span class="check-icon">✓</span> Daily Follow-Up</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Body Transformation</h3>
+                    <p>Integrated approach combining nutrition, exercise, and lifestyle coaching.</p>
+                    <ul class="service-features">
+                        <li><span class="check-icon">✓</span> Body Composition Analysis</li>
+                        <li><span class="check-icon">✓</span> Progressive Training Plans</li>
+                        <li><span class="check-icon">✓</span> Weekly Progress Monitoring</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Rehabilitation Services</h3>
+                    <p>Specialized recovery programs for post-surgical and chronic condition management.</p>
+                    <ul class="service-features">
+                        <li><span class="check-icon">✓</span> Post-Surgery Rehabilitation</li>
+                        <li><span class="check-icon">✓</span> Neurological Rehab</li>
+                        <li><span class="check-icon">✓</span> Orthopedic Recovery</li>
+                        <li><span class="check-icon">✓</span> Return-to-Sport Programs</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Home / Online Consultation Sessions</h3>
+                    <p>Professional remote consultation services designed for clients who prefer flexible, home-based
+                        support.
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check-icon">✓</span> Tele-Health Video Consultations</li>
+                        <li><span class="check-icon">✓</span> Virtual Nutrition & Physiotherapy Sessions</li>
+                        <li><span class="check-icon">✓</span> Personalized Remote Progress Tracking</li>
+                        <li><span class="check-icon">✓</span> Flexible Scheduling</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Strength & Conditioning Coaching</h3>
+                    <p>High-performance coaching designed to enhance strength, power, mobility, and overall athletic
+                        capabilities.</p>
+                    <ul class="service-features">
+                        <li><span class="check-icon">✓</span> Performance Metrics Testing</li>
+                        <li><span class="check-icon">✓</span> Personalized Strength Training Programs</li>
+                        <li><span class="check-icon">✓</span> Mobility & Endurance Development</li>
+                        <li><span class="check-icon">✓</span> Athlete-Specific Coaching</li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section id="results">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Transformations</span>
+                <h2>Success Stories</h2>
+                <p>Real transformations, real people, real results.</p>
+            </div>
+            <div class="transform-grid">
+                <div class="transform-card">
+                    <div class="transform-images">
+                        <div class="transform-img"><span><img src="./before1.jpeg" alt="Before"></span>Before</div>
+                        <div class="transform-img"><span><img src="./after1.jpeg" alt="After"></span>After</div>
+                        <div class="transform-arrow">→</div>
+                    </div>
+                    <div class="transform-content">
+                        <h4>Complete Body Transformation</h4>
+                        <p>12-week structured training and nutrition plan resulting in 18kg fat loss, visible muscle
+                            definition, and improved
+                            overall strength and mobility.</p>
+                    </div>
+                </div>
+                <div class="transform-card">
+                    <div class="transform-images">
+                        <div class="transform-img"><span><img src="./before2.jpeg" alt="Before"></span>Before</div>
+                        <div class="transform-img"><span><img src="./after2.jpeg" alt="After"></span>After</div>
+                        <div class="transform-arrow">→</div>
+                    </div>
+                    <div class="transform-content">
+                        <h4>Complete Body Transformation</h4>
+                        <p>Focused 8-week body recomposition program combining resistance training and metabolic
+                            conditioning, achieving a leaner
+                            physique, enhanced endurance, and better posture.</p>
+                    </div>
+                </div>
+                <div class="transform-card">
+                    <div class="transform-images">
+                        <div class="transform-img"><span><img src="./before3.jpeg" alt="Before"></span>Before</div>
+                        <div class="transform-img"><span><img src="./after3.jpeg" alt="After"></span>After</div>
+                        <div class="transform-arrow">→</div>
+                    </div>
+                    <div class="transform-content">
+                        <h4>Complete Body Transformation</h4>
+                        <p>10-week transformation journey targeting fat loss, muscle toning, and functional strength —
+                            ending with higher energy
+                            levels, balanced physique, and sustainable healthy habits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Journey</span>
+                <h2>Experience & Certifications</h2>
+                <p>A journey of continuous learning and professional excellence.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - Present</span>
+                        <h4>Sports Rehabilitation Specialist</h4>
+                        <p>Specialized certification in sports injury management, athletic performance, and
+                            return-to-play protocols.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - Present</span>
+                        <h4>Senior Physiotherapist</h4>
+                        <p>Leading comprehensive rehabilitation programs and managing multidisciplinary patient care
+                            teams at Elite Wellness Center.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022</span>
+                        <h4>Clinical Nutrition Certification</h4>
+                        <p>Advanced training in manual therapy techniques, joint mobilization, and soft tissue
+                            manipulation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2017 - Present</span>
+                        <h4>Personal Trainer</h4>
+                        <p>Combining biomechanics, performance testing, and individualized training to optimize movement
+                            efficiency and ensure
+                            sustainable progress.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2016 - 2021</span>
+                        <h4>Bachelor of Physical Therapy</h4>
+                        <p>Comprehensive foundational education in anatomy, biomechanics, therapeutic modalities, and
+                            clinical practice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Let's Start Your Journey</h2>
+                    <p>Ready to transform your health? Book a consultation today and take the first step toward a
+                        healthier, stronger you.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <a href="mailto:ahmed.khalid5@yahoo.com">ahmed.khalid5@yahoo.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <a href="tel:+201206267540">+201206267540</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <a href="https://maps.google.com/?q=Cairo, Egypt" target="_blank">Cairo, Egypt</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <h3>Book a Consultation</h3>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="Enter your phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Tell me about your goals..."></textarea>
+                    </div>
+                    <button class="btn btn-primary submit-btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Dr. Ahmed Khaled. All rights reserved. | Transforming lives through science-based wellness.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '-50px' });
+        document.querySelectorAll('.skill-card, .service-card, .transform-card, .timeline-item, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(3, 7, 18, 0.95)';
+            } else {
+                nav.style.background = 'rgba(3, 7, 18, 0.8)';
+            }
+        });
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        // Parallax effect for glows
+        document.addEventListener('mousemove', (e) => {
+            const glows = document.querySelectorAll('.bg-glow');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            glows[0].style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+            glows[1].style.transform = `translate(${-x * 50}px, ${-y * 50}px)`;
+        });
+
+        // Contact form submission
+        document.querySelector('.submit-btn').addEventListener('click', function () {
+            const name = document.querySelector('input[placeholder="Enter your name"]').value;
+            const email = document.querySelector('input[placeholder="Enter your email"]').value;
+            const phone = document.querySelector('input[placeholder="Enter your phone"]').value;
+            const message = document.querySelector('textarea').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields (Name, Email, and Message)');
+                return;
+            }
+
+            // Create email body
+            const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            const subject = `New Consultation Request from ${name}`;
+
+            // Open default email client
+            window.location.href = `mailto:ahmed.khalid5@yahoo.com?subject=${subject}&body=${emailBody}`;
+            // Clear form
+            document.querySelector('input[placeholder="Enter your name"]').value = '';
+            document.querySelector('input[placeholder="Enter your email"]').value = '';
+            document.querySelector('input[placeholder="Enter your phone"]').value = '';
+            document.querySelector('textarea').value = '';
+
+            alert('Your email client will open. Please send the email to complete your request!');
+        });
+    </script>
+
+
+    <style>
+        /* Transformations */
+        .transform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .transform-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .transform-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 0;
+        }
+
+        .transform-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: transparent;
+            box-shadow: 0 20px 60px var(--accent-glow);
+        }
+
+        .transform-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .transform-images {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .transform-img {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .transform-card:hover .transform-img:first-child {
+            width: 35%;
+        }
+
+        .transform-card:hover .transform-img:last-child {
+            width: 65%;
+        }
+
+        .transform-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: grayscale(20%) contrast(1.1);
+            transition: all 0.5s;
+        }
+
+        .transform-card:hover .transform-img img {
+            filter: grayscale(0%) contrast(1.2);
+        }
+
+        .transform-label {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .transform-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            box-shadow: 0 8px 32px var(--accent-glow);
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .transform-card:hover .transform-arrow {
+            transform: translate(-50%, -50%) scale(1.15) rotate(360deg);
+            box-shadow: 0 12px 48px var(--accent-glow);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 8px 32px var(--accent-glow);
+            }
+
+            50% {
+                box-shadow: 0 12px 48px rgba(34, 197, 94, 0.6);
+            }
+        }
+
+        .transform-content {
+            padding: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .transform-content h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .transform-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .transform-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .transform-stat {
+            flex: 1;
+            text-align: center;
+        }
+
+        .transform-stat-num {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 4px;
+        }
+
+        .transform-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .transform-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .transform-images {
+                height: 280px;
+            }
+
+            .transform-arrow {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .transform-stats {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+
+</body>
+
+</html>
