@@ -959,6 +959,11 @@
     <nav>
         <div class="container nav-content">
             <div class="logo">Dr. Ahmed Khalid</div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
@@ -1210,6 +1215,19 @@
                             levels, balanced physique, and sustainable healthy habits.</p>
                     </div>
                 </div>
+                <div class="transform-card">
+                    <div class="transform-images">
+                        <div class="transform-img"><span><img src="./before4.jpeg" alt="Before"></span>Before</div>
+                        <div class="transform-img"><span><img src="./after4.jpeg" alt="After"></span>After</div>
+                        <div class="transform-arrow">→</div>
+                    </div>
+                    <div class="transform-content">
+                        <h4>Complete Body Transformation</h4>
+                        <p>A fully guided 10-week journey focused on fat loss, muscle definition, and improved
+                            functional strength — ending with
+                            higher energy, a balanced physique, and sustainable healthy habits.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1246,8 +1264,9 @@
                     <div class="timeline-content">
                         <span class="timeline-date">2022</span>
                         <h4>Clinical Nutrition Certification</h4>
-                        <p>Advanced training in manual therapy techniques, joint mobilization, and soft tissue
-                            manipulation.</p>
+                        <p>A focused program in evidence-based nutrition, covering dietary assessment, personalized meal
+                            planning, and strategies
+                            to support healthy metabolism and long-term wellness.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1396,6 +1415,35 @@
 
             alert('Your email client will open. Please send the email to complete your request!');
         });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-content')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
     </script>
 
 
@@ -1597,6 +1645,78 @@
             .transform-stats {
                 flex-direction: column;
                 gap: 12px;
+            }
+        }
+
+        /**/
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--text);
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(3, 7, 18, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 100px 40px 40px;
+                gap: 24px;
+                border-left: 1px solid var(--card-border);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 18px;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--card-border);
+            }
+
+            .nav-links a::after {
+                display: none;
             }
         }
     </style>
